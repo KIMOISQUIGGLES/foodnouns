@@ -1,12 +1,11 @@
+import clsx from 'clsx';
 import classes from './NavBarDropdown.module.css';
-import NavBarButton from '../../NavBarButton';
-import { Link } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
-import { Trans } from '@lingui/macro';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { ExternalURL, externalURL } from '../../../utils/externalURL';
+
+
+
 
 
 
@@ -88,44 +87,106 @@ const NavBarDropdown: React.FC<NavBarButtonProps> = props => {
   };
   let isDisabled = disabled ?? false;
   const closeNav = () => setIsNavExpanded(false);
-
+  
   return (
     <>
-      <div
+      <div 
+        className={`${classes.wrapper} ${getNavBarButtonVariant(buttonStyle)}`}
         onClick={(e)=> handleDropDownFocus(open)}
       > 
-        <NavBarButton
-          buttonText={<Trans>Links</Trans>}
-          buttonIcon={<FontAwesomeIcon icon={faLink} />}
-        />
+        <div
+          className={clsx(classes.button, isDisabled ? classes.btnDisabled : classes.btnEnabled)}
+        >
+          {buttonIcon && <div className={classes.icon}>{buttonIcon}</div>}
+          <div>{buttonText}</div>
+        </div>
         {open && (
-          <div>
+          <div
+            className={`${classes.dropdownMenu}`}
+          >
+
+            <br/>
+
             <Nav.Link
               href={externalURL(ExternalURL.discord)}
-              className={classes.nounsNavLink}
+              className={`${classes.button} ${getNavBarButtonVariant(buttonStyle)}`}
               target="_blank"
               rel="noreferrer"
               onClick={closeNav}
             >
-              <NavBarButton
-                buttonText={<Trans>Discord</Trans>}
-              />
+              Discord
             </Nav.Link>
+
             <Nav.Link
               href={externalURL(ExternalURL.twitter)}
-              className={classes.nounsNavLink}
+              className={`${classes.button} ${getNavBarButtonVariant(buttonStyle)}`}
               target="_blank"
               rel="noreferrer"
               onClick={closeNav}
             >
-              <NavBarButton
-                buttonText={<Trans>Twitter</Trans>}
-              />
+              Twitter
             </Nav.Link>
 
-          </div>
+            <Nav.Link
+              href='https://prop.house/foodnouns'
+              className={`${classes.button} ${getNavBarButtonVariant(buttonStyle)}`}
+              target="_blank"
+              rel="noreferrer"
+              onClick={closeNav}
+            >
+              Prop House
+            </Nav.Link>
 
-          
+            <Nav.Link
+              href='https://twitter.com/prepkitchenfund'
+              className={`${classes.button} ${getNavBarButtonVariant(buttonStyle)}`}
+              target="_blank"
+              rel="noreferrer"
+              onClick={closeNav}
+            >
+              Prep Kitchen
+            </Nav.Link>
+
+            <Nav.Link
+              href='https://twitter.com/KitchenNouncil'
+              className={`${classes.button} ${getNavBarButtonVariant(buttonStyle)}`}
+              target="_blank"
+              rel="noreferrer"
+              onClick={closeNav}
+            >
+              Kitchen Nouncil
+            </Nav.Link>
+
+            <Nav.Link
+              href='foodnounish.wtf'
+              className={`${classes.button} ${getNavBarButtonVariant(buttonStyle)}`}
+              target="_blank"
+              rel="noreferrer"
+              onClick={closeNav}
+            >
+              Foodnounish
+            </Nav.Link>
+
+            <Nav.Link
+              href='https://fillthevoid.xyz'
+              className={`${classes.button} ${getNavBarButtonVariant(buttonStyle)}`}
+              target="_blank"
+              rel="noreferrer"
+              onClick={closeNav}
+            >
+              Fillthevoid
+            </Nav.Link>
+
+            <Nav.Link
+              href='https://nouns.wtf/'
+              className={`${classes.button} ${classes.whiteInfo} ${getNavBarButtonVariant(buttonStyle)}`}
+              target="_blank"
+              rel="noreferrer"
+              onClick={closeNav}
+            >
+              NounsDAO
+            </Nav.Link>
+          </div>
         )}
       </div>
     </>
