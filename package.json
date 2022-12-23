@@ -45,5 +45,8 @@
       "yarn lint",
       "yarn format"
     ]
+  },
+  "dependencies": {
+    "assemblyscript": "^0.25.1"
   }
 }
